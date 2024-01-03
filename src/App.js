@@ -1,11 +1,17 @@
 import React from 'react';
-import Event from './jsxSample/Event';
+import Navbar from './template/Navbar';
+import Header from './template/Header';
+import PageContent from './template/PageContent';
+import Footer from './template/Footer';
 
 function App() {
 
 
   return <>
-    <Event/>
+    <Navbar/>
+    <Header/>
+    <PageContent/>
+    <Footer/>
   </>
 }
 
