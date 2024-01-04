@@ -4,6 +4,7 @@ import ProductsHeader from './ProductsHeader';
 
 function ProductsPage() {
     const [products, setproducts] = useState(productsData)
+    const [cart, setcart] = useState([])
 
 
     const removeProduct = (id) => {
@@ -18,6 +19,29 @@ function ProductsPage() {
 
     let averagePrice = totalPrice / products.length
 
+
+    const addToCart = (product) => {
+
+        var item = cart.find(q => q.id == product.id)
+
+        if(item){
+            item.quantity = item.quantity + 1
+            setcart([...cart])
+        }
+        else{
+            let newCartItem = {
+                id:product.id,
+                quantity:1,
+                unitPrice:product.unitPrice
+            }
+
+            setcart([...cart, newCartItem])
+        }
+    }
+
+
+    
+
     return (<>
         <ProductsHeader totalPrice={totalPrice} averagePrice={averagePrice} productsLength={products.length} />
 
@@ -29,6 +53,7 @@ function ProductsPage() {
                     <th>Unit Price</th>
                     <th>Units In Stock</th>
                     <th>Delete</th>
+                    <th>Add To Cart</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +65,7 @@ function ProductsPage() {
                             <td>{product.unitPrice.toFixed(2)}</td>
                             <td>{product.unitsInStock}</td>
                             <td><button onClick={() => removeProduct(product.id)}>Delete</button></td>
+                            <td><button onClick={() => addToCart(product)}>Add to cart</button> </td>
                         </tr>
                     ))
                 }
@@ -49,3 +75,18 @@ function ProductsPage() {
 }
 
 export default ProductsPage
+
+
+
+// let cart = [
+//     {
+//         id:1,
+//         quantity:2,
+//         unitPrice:500
+//     },
+//     {
+//         id:6,
+//         quantity:3,
+//         unitPrice:100
+//     }
+// ]
