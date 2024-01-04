@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { productsData } from '../data/productsData'
 import ProductsHeader from './ProductsHeader';
+import Cart from './Cart';
 
 function ProductsPage() {
     const [products, setproducts] = useState(productsData)
@@ -24,15 +25,16 @@ function ProductsPage() {
 
         var item = cart.find(q => q.id == product.id)
 
-        if(item){
+        if (item) {
             item.quantity = item.quantity + 1
             setcart([...cart])
         }
-        else{
+        else {
             let newCartItem = {
-                id:product.id,
-                quantity:1,
-                unitPrice:product.unitPrice
+                id: product.id,
+                quantity: 1,
+                name: product.name,
+                unitPrice: product.unitPrice
             }
 
             setcart([...cart, newCartItem])
@@ -40,10 +42,20 @@ function ProductsPage() {
     }
 
 
-    
+    const empty = () => {
+        setcart([])
+    }
+
+    const removeItem = (id) => {
+        const filteredCart = cart.filter(q => q.id != id);
+        setcart(filteredCart);
+    }
 
     return (<>
-        <ProductsHeader totalPrice={totalPrice} averagePrice={averagePrice} productsLength={products.length} />
+        <div style={{display:'flex', justifyContent:'space-between'}}>
+            <ProductsHeader totalPrice={totalPrice} averagePrice={averagePrice} productsLength={products.length} />
+            <Cart productsOfCart={cart} empty={empty} removeItem={removeItem} />
+        </div>
 
         <table className='w3-table w3-striped'>
             <thead>
