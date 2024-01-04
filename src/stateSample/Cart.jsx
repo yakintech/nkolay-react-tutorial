@@ -20,10 +20,7 @@ function Cart({ productsOfCart, empty, removeItem }) {
                 {
                     productsOfCart.map(item => {
                         return <>
-                            <li style={{ margin: 10 }}>{item.name} - {item.quantity} * {item.unitPrice.toFixed(2)} = {(item.quantity * item.unitPrice).toFixed(2)}
-                                <button style={{ marginLeft: 10 }} onClick={() => removeItem(item.id)}>Remove</button>
-                            </li>
-
+                            <CartItem removeItem={removeItem} item={item} />
                         </>
                     })
                 }
@@ -36,13 +33,9 @@ function Cart({ productsOfCart, empty, removeItem }) {
 
 export default Cart
 
-//     {
-//         id:1,
-//         quantity:2,
-//         unitPrice:500
-//     },
-//     {
-//         id:6,
-//         quantity:3,
-//         unitPrice:100
-//     }
+function CartItem({ item, removeItem }) {
+
+    return <li style={{ margin: 10 }}>{item.name} - {item.quantity} * {item.unitPrice.toFixed(2)} = {(item.quantity * item.unitPrice).toFixed(2)}
+        <button style={{ marginLeft: 10 }} onClick={() => removeItem(item.id)}>Remove</button>
+    </li>
+}

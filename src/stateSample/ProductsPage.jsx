@@ -52,7 +52,7 @@ function ProductsPage() {
     }
 
     return (<>
-        <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <ProductsHeader totalPrice={totalPrice} averagePrice={averagePrice} productsLength={products.length} />
             <Cart productsOfCart={cart} empty={empty} removeItem={removeItem} />
         </div>
@@ -70,16 +70,18 @@ function ProductsPage() {
             </thead>
             <tbody>
                 {
-                    products.map((product) => (
-                        <tr key={product.id}>
+                    products.map((product) => {
+                        return <tr key={product.id}>
+
                             <td>{product.id}</td>
                             <td>{product.name}</td>
                             <td>{product.unitPrice.toFixed(2)}</td>
                             <td>{product.unitsInStock}</td>
                             <td><button onClick={() => removeProduct(product.id)}>Delete</button></td>
                             <td><button onClick={() => addToCart(product)}>Add to cart</button> </td>
+                            
                         </tr>
-                    ))
+                    })
                 }
             </tbody>
         </table>
