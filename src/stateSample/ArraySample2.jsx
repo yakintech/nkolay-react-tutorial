@@ -6,7 +6,6 @@ function ArraySample2() {
 
     const addRandom = () => {
         const random = Math.floor(Math.random() * 100)
-
         setrandomNumbers([...randomNumbers, random])
 
     }
