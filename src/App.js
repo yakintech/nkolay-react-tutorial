@@ -1,17 +1,11 @@
 import React from 'react';
-import Navbar from './template/Navbar';
-import Header from './template/Header';
-import PageContent from './template/PageContent';
-import Footer from './template/Footer';
+import StateIntro from './stateSample/StateIntro';
 
 function App() {
 
 
   return <>
-    <Navbar/>
-    <Header/>
-    <PageContent/>
-    <Footer/>
+    <StateIntro/>
   </>
 }
 
